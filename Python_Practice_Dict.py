@@ -34,5 +34,3 @@ def report_letter_counts(text):
 print(letter_counts('HeLlo'))
 
 
-
-# %%
