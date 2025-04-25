@@ -43,6 +43,33 @@ def report_letter_counts(text):
 # Test run
 print(report_letter_counts('HeLlo'))
 
+
+# %% Another dictionary challenge
+
+# List of sales transactions (rep name + region sold in)
+
+sales = [
+    {"rep": "Alice", "region": "North"},
+    {"rep": "Bob", "region": "South"},
+    {"rep": "Alice", "region": "North"},
+    {"rep": "Diana", "region": "West"},
+    {"rep": "Bob", "region": "South"},
+    {"rep": "Diana", "region": "West"},
+    {"rep": "Alice", "region": "East"}
+]
+
+# Return a dictionary where each sales rep maps to their total # of sales
+
+def count_sales_by_rep(data):
+    sales_by_rep = {}
+    for sale in data:
+        sales_by_rep[sale["rep"]] = sales_by_rep.get(sale["rep"], 0) + 1
+    return sales_by_rep
+
+print(count_sales_by_rep(sales))
+    
+
+
 # %% Series of quesitons to answer
 
 # 1. What does this return?
