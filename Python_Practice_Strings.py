@@ -129,3 +129,30 @@ items = ["AI", "2024", "ML", "123", "DL"]
 items_alpha = [alpha for alpha in items if alpha.isalpha()]
 
 # %%
+
+# %% Advanced String Challenge
+
+import pandas as pd
+
+# You have a messy Series of product descriptions:
+products = pd.Series([
+    "  iPhone 14 Pro 256GB  ", 
+    "Galaxy S23Ultra512gb", 
+    "Pixel_7Pro 128 gb", 
+    "  OnePlus11_256 GB "
+])
+
+# Task:
+# 1. Clean each string by:
+#    - Stripping extra spaces
+#    - Replacing underscores "_" with spaces
+#    - Making all text lowercase
+# 2. Then split each cleaned string into a list of words
+# 3. Return the final cleaned Series 
+
+# Your code here:
+
+clean_products = products.str.strip().str.replace('_', ' ').str.lower().str.split()
+
+print(clean_products)
+# %%
