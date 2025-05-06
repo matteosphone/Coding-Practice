@@ -1,7 +1,7 @@
 # ======================================
 # 📅 pandas DateTime Drill Set 
 # ======================================
-
+#%% 
 import pandas as pd
 
 # --------------------------------------
@@ -95,6 +95,7 @@ print(log_times.dt.quarter)
 # Task:
 # From each datetime, extract the part that represents just the date,
 # and the part that represents just the time
+
 print(log_times.dt.date)
 print(log_times.dt.time)
 
@@ -158,3 +159,4 @@ df = df.set_index("date")
 # Return only the rows where the date is in February
 df_feb = df[df.index.month == 2]
 print(df_feb)
+# %%

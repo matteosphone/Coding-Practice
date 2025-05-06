@@ -14,7 +14,7 @@ df = pd.DataFrame({
         "2024-02-10", "2024-02-15"
     ]
 })
-
+#%% 
 # --------------------------------------
 # Problem 1: View the first few rows
 # --------------------------------------
@@ -63,7 +63,7 @@ df['Date'] = pd.to_datetime(df['date'])
 
 # Your code here
 
-print(df.groupby('product').agg('sum'))['sales']
+print(df.groupby('product').agg('sum')['sales'])
 
 # --------------------------------------
 # Problem 6: Count missing values per column
@@ -115,4 +115,111 @@ df.empty
 
 col_names = list(df.columns)
 
-#%% 
+# --------------------------------------
+# Problem 11: Return last 2 rows of the DataFrame
+# --------------------------------------
+# Task:
+# Use the appropriate method to display the last two rows
+
+# Your code here
+
+df.tail(2)
+
+# --------------------------------------
+# Problem 12: Get a concise summary of the DataFrame
+# --------------------------------------
+# Task:
+# Print info about columns, non-null counts, and memory usage
+
+# Your code here
+
+df.info()
+
+# --------------------------------------
+# Problem 13: Generate descriptive statistics
+# --------------------------------------
+# Task:
+# Get summary stats for all numeric columns
+
+# Your code here
+
+df.describe()
+
+# --------------------------------------
+# Problem 14: Remove rows with any missing values
+# --------------------------------------
+# Task:
+# Drop any rows in the DataFrame that contain NaNs
+
+# Your code here
+#%%
+df = df.dropna()
+#%%
+# --------------------------------------
+# Problem 15: Fill missing values with a constant
+# --------------------------------------
+# Task:
+# Fill NaNs with the number 0
+
+# Your code here
+
+df = df.fillna(0)
+
+# --------------------------------------
+# Problem 16: Clip sales values between 100 and 250
+# --------------------------------------
+# Task:
+# Cap the 'sales' column so that all values fall between 100 and 250
+
+# Your code here
+
+df['sales'] = df['sales'].clip(100, 250)
+
+# --------------------------------------
+# Problem 17: Find duplicated rows
+# --------------------------------------
+# Task:
+# Return a boolean Series marking duplicate rows
+
+# Your code here
+#%%
+df.duplicated()
+#%%
+
+# --------------------------------------
+# Problem 18: Drop duplicate rows
+# --------------------------------------
+# Task:
+# Remove duplicate rows from the DataFrame
+
+# Your code here
+#%%
+df = df.drop_duplicates()
+
+# --------------------------------------
+# Problem 19: Filter DataFrame using SQL-like expression
+# --------------------------------------
+# Task:
+# Select rows where sales are greater than 150 
+
+# Your code here
+#%%
+print(df.query('sales > 150'))
+
+# --------------------------------------
+# Problem 20: Perform a left join on another DataFrame
+# --------------------------------------
+# Task:
+# Merge `df` with `df2` on 'product', keeping all rows from `df`
+
+df2 = pd.DataFrame({
+    "product": ["A", "B", "D"],
+    "category": ["Phone", "Tablet", "Accessory"]
+})
+
+# Your code here
+df_merged = df.merge(df2, on='product', how='left')
+
+df_merged
+#%%
+
