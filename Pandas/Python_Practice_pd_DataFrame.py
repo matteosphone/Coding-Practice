@@ -6,12 +6,12 @@
 import pandas as pd
 
 df = pd.DataFrame({
-    "product": ["A", "B", "C", "B", "A"],
-    "sales": [100, 200, 300, 200, 150],
-    "region": ["East", "West", "East", "West", "East"],
+    "product": ["A", "B", "C", "B", "A", "B"],
+    "sales": [100, 200, 300, 200, 150, 200],
+    "region": ["East", "West", "East", "West", "East", "East"],
     "date": [
         "2024-01-01", "2024-01-03", "2024-01-05",
-        "2024-02-10", "2024-02-15"
+        "2024-02-10", "2024-02-15", "2024-02-20"
     ]
 })
 #%% 
@@ -52,9 +52,9 @@ df.sort_values('sales', ascending=False)
 # Convert the "date" column to datetime format
 
 # Your code here
-
+#%%
 df['Date'] = pd.to_datetime(df['date'])
-
+#%%
 # --------------------------------------
 # Problem 5: Group by "product" and compute total sales
 # --------------------------------------
@@ -223,3 +223,109 @@ df_merged = df.merge(df2, on='product', how='left')
 df_merged
 #%%
 
+# --------------------------------------
+# Problem 21: Set the index to the "date" column
+# --------------------------------------
+# Task:
+# Set the DataFrame's index to the "date" column
+
+# Your code here
+df.set_index('date', inplace=True)
+
+# --------------------------------------
+# Problem 22: Reset the index back to default integer index
+# --------------------------------------
+# Task:
+# Move the date index back into a regular column
+
+# Your code here
+
+df.reset_index(inplace=True)
+
+# --------------------------------------
+# Problem 23: Sort the DataFrame by index
+# --------------------------------------
+# Task:
+# Sort rows based on the current index values
+#%%
+# Your code here
+df = df.sort_index()
+#%%
+# --------------------------------------
+# Problem 24: Check the names of the index levels
+# --------------------------------------
+# Task:
+# Print the names of the index level(s)
+#%%
+# Your code here
+print(df.index.names)
+#%%
+# --------------------------------------
+# Problem 25: Group by both "product" and "region"
+# --------------------------------------
+# Task:
+# Group the data by both columns and calculate total sales
+
+# Your code here
+#%%
+
+multi_df = df.groupby(['product', 'region'])['sales'].sum()
+
+print(multi_df.index)
+
+#%%
+# --------------------------------------
+# Problem 26: Apply a custom row-level function
+# --------------------------------------
+# Task:
+# Write a row-wise `apply()` that returns "High" if sales > 200, else "Low"
+
+# Your code here
+#%%
+df['Sales Level'] = df.apply(lambda row: 'High' if row['sales']>200 else 'Low', axis=1)
+print(df)
+#%%
+
+# --------------------------------------
+# Problem 27: Add a derived column using `.assign()`
+# --------------------------------------
+# Task:
+# Create a new column "sales_taxed" which is 1.1 × "sales" using `assign()`
+
+# Your code here
+#%%
+df = df.assign(sales_taxed = df['sales'] * 1.1)
+print(df)
+#%%
+# --------------------------------------
+# Problem 28: Aggregate multiple stats with `.agg()`
+# --------------------------------------
+# Task:
+# Group by "product" and return both mean and max of "sales"
+
+# Your code here
+
+#%%
+print(df.groupby('product')['sales'].agg(['mean', 'max']))
+#%%
+
+# --------------------------------------
+# Problem 29: Rename the DataFrame's index
+# --------------------------------------
+# Task:
+# Set a custom name for the index (e.g., "TransactionDate")
+
+# Your code here
+
+df.index.name = 'TransactionDate'
+
+# --------------------------------------
+# Problem 30: Create a MultiIndex by setting two columns as index
+# --------------------------------------
+# Task:
+# Use both "product" and "region" as a hierarchical index
+
+# Your code here
+#%%
+df = df.set_index(['product','region'])
+#%%
